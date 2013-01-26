@@ -32,6 +32,9 @@
 		27DDDE5716B4202B00B7EEEA /* ggjActorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE5616B4202B00B7EEEA /* ggjActorFactory.m */; };
 		3E2B2E0516B41AE700F343CD /* ggjActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2E0416B41AE700F343CD /* ggjActor.m */; };
 		3E6ADA9D16B42E2000251CB2 /* ggjGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6ADA9C16B42E2000251CB2 /* ggjGameViewController.m */; };
+		3EC8D0F416B444F500F7F46A /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0F116B444F500F7F46A /* brick.png */; };
+		3EC8D0F516B444F500F7F46A /* cat_walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0F216B444F500F7F46A /* cat_walk.png */; };
+		3EC8D0F616B444F500F7F46A /* mon2_walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0F316B444F500F7F46A /* mon2_walk.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +75,9 @@
 		3E2B2E0416B41AE700F343CD /* ggjActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjActor.m; path = "Cardiac Castle/ggjActor.m"; sourceTree = "<group>"; };
 		3E6ADA9B16B42E2000251CB2 /* ggjGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ggjGameViewController.h; sourceTree = "<group>"; };
 		3E6ADA9C16B42E2000251CB2 /* ggjGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ggjGameViewController.m; sourceTree = "<group>"; };
+		3EC8D0F116B444F500F7F46A /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brick.png; path = "Cardiac Castle/Resources/brick.png"; sourceTree = "<group>"; };
+		3EC8D0F216B444F500F7F46A /* cat_walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cat_walk.png; path = "Cardiac Castle/Resources/cat_walk.png"; sourceTree = "<group>"; };
+		3EC8D0F316B444F500F7F46A /* mon2_walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mon2_walk.png; path = "Cardiac Castle/Resources/mon2_walk.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 		27DDDE1316B4193100B7EEEA = {
 			isa = PBXGroup;
 			children = (
+				3EC8D0F816B4450000F7F46A /* Resources */,
 				27C0B25B16B43FAC00835648 /* CoreMedia.framework */,
 				27C0B25916B43D6300835648 /* AssetsLibrary.framework */,
 				27C0B25716B43D4D00835648 /* MediaPlayer.framework */,
@@ -186,6 +193,16 @@
 			name = Factories;
 			sourceTree = "<group>";
 		};
+		3EC8D0F816B4450000F7F46A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3EC8D0F116B444F500F7F46A /* brick.png */,
+				3EC8D0F216B444F500F7F46A /* cat_walk.png */,
+				3EC8D0F316B444F500F7F46A /* mon2_walk.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -243,6 +260,9 @@
 				27DDDE3716B4193100B7EEEA /* Default@2x.png in Resources */,
 				27DDDE3916B4193100B7EEEA /* Default-568h@2x.png in Resources */,
 				27DDDE3C16B4193100B7EEEA /* MainStoryboard.storyboard in Resources */,
+				3EC8D0F416B444F500F7F46A /* brick.png in Resources */,
+				3EC8D0F516B444F500F7F46A /* cat_walk.png in Resources */,
+				3EC8D0F616B444F500F7F46A /* mon2_walk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
