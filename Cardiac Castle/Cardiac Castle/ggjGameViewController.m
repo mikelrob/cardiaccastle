@@ -29,6 +29,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    isStillCounting = NO;
+    isPlaying = NO;
+    redIsHigh = NO;
+    redWasHigh = NO;
+    isFirstFlipFound = NO;
+    highValue = 0.0;
+    lowValue = 1.0;
+    midValue = 0.0;
+    valuesArray = [NSMutableArray new];
+    redsArray = [NSMutableArray new];
+    ratesArray = [NSMutableArray new];
+    
+    measureQueue = dispatch_queue_create("cameraQueue", NULL);
+    [self measureHeartRate];
     
     
 }
@@ -46,6 +60,10 @@
 
 - (void) measureHeartRate
 {
+    
+    isMeasuring = YES;
+    [self setupCaptureSession];
+    [self startMeasurementLoop];
     
 }
 
@@ -119,16 +137,18 @@
         NSTimeInterval timeElapsed = [currentTime timeIntervalSinceDate: lastLoopDate];
         lastLoopDate = currentTime;
         
-        [self moveMonsters];
-        [self moveBackground];
-        [self moveObstacles];
-        
-        if(NO == [[self victoryChecker] endGame])
+        if (timeElapsed >= 0.02)
         {
-            [self spawnMonsters];
-            [self spawnObstacles];
+            [self moveMonsters];
+            [self moveBackground];
+            [self moveObstacles];
+            
+            if(NO == [[self victoryChecker] endGame])
+            {
+                [self spawnMonsters];
+                [self spawnObstacles];
+            }
         }
-        
     });
 }
 
@@ -136,5 +156,277 @@
 {
     
 }
+
+- (void) startMeasurementLoop
+{
+    isStillCounting = YES;
+    measuringTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(finishMeasuring) userInfo:nil repeats:NO];
+}
+
+- (void) finishMeasuring
+{
+    isStillCounting = NO;
+    CGFloat totalValue = 0.0;
+    for (NSNumber *number in valuesArray)
+    {
+        totalValue += [number floatValue];
+    }
+    
+    valuesCount = [valuesArray count];
+    midValue = totalValue / valuesCount;
+    lastFlipTime = [[NSDate date] timeIntervalSinceReferenceDate];
+    isPlaying = YES;
+}
+
+struct pixel {
+    unsigned char r, g, b, a;
+};
+
+- (UIColor*) getDominantColor:(UIImage*)image
+{
+    NSUInteger red = 0;
+    NSUInteger green = 0;
+    NSUInteger blue = 0;
+    
+    
+    // Allocate a buffer big enough to hold all the pixels
+    
+    struct pixel* pixels = (struct pixel*) calloc(1, image.size.width * image.size.height * sizeof(struct pixel));
+    if (pixels != nil)
+    {
+        
+        CGContextRef context = CGBitmapContextCreate(
+                                                     (void*) pixels,
+                                                     image.size.width,
+                                                     image.size.height,
+                                                     8,
+                                                     image.size.width * 4,
+                                                     CGImageGetColorSpace(image.CGImage),
+                                                     kCGImageAlphaPremultipliedLast
+                                                     );
+        
+        if (context != NULL)
+        {
+            // Draw the image in the bitmap
+            
+            CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, image.size.width, image.size.height), image.CGImage);
+            
+            // Now that we have the image drawn in our own buffer, we can loop over the pixels to
+            // process it. This simple case simply counts all pixels that have a pure red component.
+            
+            // There are probably more efficient and interesting ways to do this. But the important
+            // part is that the pixels buffer can be read directly.
+            
+            NSUInteger numberOfPixels = image.size.width * image.size.height;
+            for (int i=0; i<numberOfPixels; i++) {
+                red += pixels[i].r;
+                green += pixels[i].g;
+                blue += pixels[i].b;
+            }
+            
+            
+            red /= numberOfPixels;
+            green /= numberOfPixels;
+            blue/= numberOfPixels;
+            
+            
+            CGContextRelease(context);
+        }
+        
+        free(pixels);
+    }
+    return [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1.0f];
+}
+
+// Create and configure a capture session and start it running
+- (void)setupCaptureSession
+{
+    NSError *error = nil;
+    
+    // Create the session
+    session = [[AVCaptureSession alloc] init];
+    
+    // Configure the session to produce lower resolution video frames, if your
+    // processing algorithm can cope. We'll specify medium quality for the
+    // chosen device.
+    session.sessionPreset = AVCaptureSessionPresetMedium;
+    
+    // Find a suitable AVCaptureDevice
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device hasTorch])
+    {
+        
+        [device lockForConfiguration:nil];
+        [device setTorchMode:AVCaptureTorchModeOn];
+        //        [device setFlashMode:AVCaptureFlashModeOn];
+        [device unlockForConfiguration];
+    }
+    
+    if ([device isFocusModeSupported:AVCaptureFocusModeLocked])
+    {
+        [device lockForConfiguration:nil];
+        [device setFocusMode:AVCaptureFocusModeLocked];
+        [device unlockForConfiguration];
+    }
+    
+    // Create a device input with the device and add it to the session.
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device
+                                                                        error:&error];
+    if (!input) {
+        // Handling the error appropriately.
+    }
+    [session addInput:input];
+    
+    // Create a VideoDataOutput and add it to the session
+    AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
+    [session addOutput:output];
+    
+    // Configure your output.
+    myQueue = dispatch_queue_create("myQueue", NULL);
+    [output setSampleBufferDelegate:self queue:myQueue];
+    
+    // Specify the pixel format
+    output.videoSettings =
+    [NSDictionary dictionaryWithObject:
+     [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
+                                forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    
+    
+    // If you wish to cap the frame rate to a known value, such as 15 fps, set
+    // minFrameDuration.
+    //    output.minFrameDuration = CMTimeMake(1, 15);
+    
+    // Start the session running to start the flow of data
+    [session startRunning];
+}
+
+// Delegate routine that is called when a sample buffer was written
+- (void)captureOutput:(AVCaptureOutput *)captureOutput
+didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+       fromConnection:(AVCaptureConnection *)connection
+{
+        // Create a UIImage from the sample buffer data
+        CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+        CVPixelBufferLockBaseAddress(imageBuffer, 0);
+        
+        uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
+        size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+        size_t width = CVPixelBufferGetWidth(imageBuffer);
+        size_t height = CVPixelBufferGetHeight(imageBuffer);
+        
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGContextRef newContext = CGBitmapContextCreate(baseAddress, width, height, 8, bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+        CGImageRef newImage = CGBitmapContextCreateImage(newContext);
+        
+        CGContextRelease(newContext);
+        CGColorSpaceRelease(colorSpace);
+        UIImage *image = [UIImage imageWithCGImage:newImage scale:1.0 orientation:UIImageOrientationLeftMirrored];
+        
+        UIColor *color = [self getDominantColor:image];
+        //    NSLog(@"%@", color);
+        
+        CGColorRef cgColor = [color CGColor];
+        
+        const CGFloat *components = CGColorGetComponents(cgColor);
+        CGFloat red = components[0];
+        
+        if ([redsArray count] > 0)
+        {
+            movingRedAve = movingRedAve + red/([redsArray count]+1) - [[redsArray objectAtIndex:0] floatValue]/([redsArray count]+1);
+            if ([redsArray count] > 5)
+            {
+                [redsArray removeObjectAtIndex:0];
+            }
+            [redsArray addObject: [NSNumber numberWithFloat:red]];
+        }
+        else
+        {
+            movingRedAve = red;
+        }
+        
+        
+        if (isStillCounting)
+        {
+            [valuesArray addObject:[NSNumber numberWithFloat:red ]];
+            if (movingRedAve > highValue)
+            {
+                highValue = movingRedAve;
+            }
+            
+            if (movingRedAve < lowValue)
+            {
+                lowValue = movingRedAve;
+            }
+        }
+        
+        if (isPlaying)
+        {
+            CGFloat poppedValue = [[valuesArray objectAtIndex:0] floatValue];
+            midValue = midValue + (movingRedAve/valuesCount) - (poppedValue/valuesCount);
+            if (midValue > 1.0)
+            {
+                NSLog(@"derp!");
+            }
+            
+            redIsHigh = (movingRedAve > midValue) ? YES : NO;
+            
+            if (redIsHigh && !redWasHigh)
+            {
+                NSTimeInterval timeNow = [[NSDate date] timeIntervalSinceReferenceDate];
+                NSTimeInterval timeSinceLastFlip = timeNow - lastFlipTime;
+                lastFlipTime = timeNow;
+                
+                if (isFirstFlipFound)
+                {
+                    CGFloat newRate = 60.0/timeSinceLastFlip;
+                    [ratesArray addObject: [NSNumber numberWithFloat:newRate]];
+                    
+                    if ([ratesArray count] > 0)
+                    {
+                        CGFloat averageRate = 0.0;
+                        for (NSNumber *rate in ratesArray)
+                        {
+                            averageRate += [rate floatValue];
+                        }
+                        averageRate /= [ratesArray count];
+                        
+                        heartRate = averageRate;
+                        
+                    }
+                    else
+                    {
+                        heartRate = newRate;
+                    }
+                    
+                    if ([ratesArray count] > 10)
+                    {
+                        [ratesArray removeObjectAtIndex:0];
+                    }
+                    
+                }
+                else
+                {
+                    isFirstFlipFound = YES;
+                }
+                
+                NSLog(@"heartRate: %f", heartRate);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[self HRLabel] setText: [NSString stringWithFormat:@"%f", heartRate ]];
+                    [[self HRLabel] setNeedsDisplay];
+                });
+            }
+            
+            redWasHigh = redIsHigh;
+            
+            [valuesArray removeObjectAtIndex:0];
+            [valuesArray addObject: [NSNumber numberWithFloat:movingRedAve ]];
+            
+        }
+        
+        CGImageRelease(newImage);
+        CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
+        
+}
+
 
 @end
