@@ -16,7 +16,7 @@
 @property (strong) UIImage *image;
 @property CGPoint velocity;
 @property CGSize size;
-@property UIImageView *actorImageView;
+@property (strong) UIImageView *actorImageView;
 
 
 @end

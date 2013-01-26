@@ -19,6 +19,8 @@
 - (ggjMonsterActor *)spawnActor{
     ggjMonsterActor* newMonster = [[ggjMonsterActor alloc] init];
     [newMonster setImage: [self monsterImage]];
+    [newMonster setSize: [[self monsterImage] size]];
+    [newMonster setActorImageView: [[UIImageView alloc] initWithImage: [self monsterImage]]];
     return newMonster;
 }
 @end
