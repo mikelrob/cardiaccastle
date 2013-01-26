@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27DDDE2316B4193100B7EEEA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DDDE2216B4193100B7EEEA /* UIKit.framework */; };
+		27DDDE2516B4193100B7EEEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DDDE2416B4193100B7EEEA /* Foundation.framework */; };
+		27DDDE2716B4193100B7EEEA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DDDE2616B4193100B7EEEA /* CoreGraphics.framework */; };
+		27DDDE2D16B4193100B7EEEA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27DDDE2B16B4193100B7EEEA /* InfoPlist.strings */; };
+		27DDDE2F16B4193100B7EEEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE2E16B4193100B7EEEA /* main.m */; };
+		27DDDE3316B4193100B7EEEA /* ggjAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE3216B4193100B7EEEA /* ggjAppDelegate.m */; };
+		27DDDE3516B4193100B7EEEA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DDDE3416B4193100B7EEEA /* Default.png */; };
+		27DDDE3716B4193100B7EEEA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DDDE3616B4193100B7EEEA /* Default@2x.png */; };
+		27DDDE3916B4193100B7EEEA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DDDE3816B4193100B7EEEA /* Default-568h@2x.png */; };
+		27DDDE3C16B4193100B7EEEA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27DDDE3A16B4193100B7EEEA /* MainStoryboard.storyboard */; };
+		27DDDE3F16B4193100B7EEEA /* ggjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE3E16B4193100B7EEEA /* ggjViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		27DDDE1E16B4193100B7EEEA /* Cardiac Castle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cardiac Castle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27DDDE2216B4193100B7EEEA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		27DDDE2416B4193100B7EEEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27DDDE2616B4193100B7EEEA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		27DDDE2A16B4193100B7EEEA /* Cardiac Castle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cardiac Castle-Info.plist"; sourceTree = "<group>"; };
+		27DDDE2C16B4193100B7EEEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		27DDDE2E16B4193100B7EEEA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		27DDDE3016B4193100B7EEEA /* Cardiac Castle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cardiac Castle-Prefix.pch"; sourceTree = "<group>"; };
+		27DDDE3116B4193100B7EEEA /* ggjAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ggjAppDelegate.h; sourceTree = "<group>"; };
+		27DDDE3216B4193100B7EEEA /* ggjAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ggjAppDelegate.m; sourceTree = "<group>"; };
+		27DDDE3416B4193100B7EEEA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		27DDDE3616B4193100B7EEEA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		27DDDE3816B4193100B7EEEA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		27DDDE3B16B4193100B7EEEA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		27DDDE3D16B4193100B7EEEA /* ggjViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ggjViewController.h; sourceTree = "<group>"; };
+		27DDDE3E16B4193100B7EEEA /* ggjViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ggjViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27DDDE1B16B4193100B7EEEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27DDDE2316B4193100B7EEEA /* UIKit.framework in Frameworks */,
+				27DDDE2516B4193100B7EEEA /* Foundation.framework in Frameworks */,
+				27DDDE2716B4193100B7EEEA /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		27DDDE1316B4193100B7EEEA = {
+			isa = PBXGroup;
+			children = (
+				27DDDE2816B4193100B7EEEA /* Cardiac Castle */,
+				27DDDE2116B4193100B7EEEA /* Frameworks */,
+				27DDDE1F16B4193100B7EEEA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27DDDE1F16B4193100B7EEEA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27DDDE1E16B4193100B7EEEA /* Cardiac Castle.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27DDDE2116B4193100B7EEEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27DDDE2216B4193100B7EEEA /* UIKit.framework */,
+				27DDDE2416B4193100B7EEEA /* Foundation.framework */,
+				27DDDE2616B4193100B7EEEA /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27DDDE2816B4193100B7EEEA /* Cardiac Castle */ = {
+			isa = PBXGroup;
+			children = (
+				27DDDE3116B4193100B7EEEA /* ggjAppDelegate.h */,
+				27DDDE3216B4193100B7EEEA /* ggjAppDelegate.m */,
+				27DDDE3A16B4193100B7EEEA /* MainStoryboard.storyboard */,
+				27DDDE3D16B4193100B7EEEA /* ggjViewController.h */,
+				27DDDE3E16B4193100B7EEEA /* ggjViewController.m */,
+				27DDDE2916B4193100B7EEEA /* Supporting Files */,
+			);
+			path = "Cardiac Castle";
+			sourceTree = "<group>";
+		};
+		27DDDE2916B4193100B7EEEA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				27DDDE2A16B4193100B7EEEA /* Cardiac Castle-Info.plist */,
+				27DDDE2B16B4193100B7EEEA /* InfoPlist.strings */,
+				27DDDE2E16B4193100B7EEEA /* main.m */,
+				27DDDE3016B4193100B7EEEA /* Cardiac Castle-Prefix.pch */,
+				27DDDE3416B4193100B7EEEA /* Default.png */,
+				27DDDE3616B4193100B7EEEA /* Default@2x.png */,
+				27DDDE3816B4193100B7EEEA /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		27DDDE1D16B4193100B7EEEA /* Cardiac Castle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27DDDE4216B4193100B7EEEA /* Build configuration list for PBXNativeTarget "Cardiac Castle" */;
+			buildPhases = (
+				27DDDE1A16B4193100B7EEEA /* Sources */,
+				27DDDE1B16B4193100B7EEEA /* Frameworks */,
+				27DDDE1C16B4193100B7EEEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cardiac Castle";
+			productName = "Cardiac Castle";
+			productReference = 27DDDE1E16B4193100B7EEEA /* Cardiac Castle.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27DDDE1516B4193100B7EEEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ggj;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = GGJ13;
+			};
+			buildConfigurationList = 27DDDE1816B4193100B7EEEA /* Build configuration list for PBXProject "Cardiac Castle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 27DDDE1316B4193100B7EEEA;
+			productRefGroup = 27DDDE1F16B4193100B7EEEA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27DDDE1D16B4193100B7EEEA /* Cardiac Castle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		27DDDE1C16B4193100B7EEEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27DDDE2D16B4193100B7EEEA /* InfoPlist.strings in Resources */,
+				27DDDE3516B4193100B7EEEA /* Default.png in Resources */,
+				27DDDE3716B4193100B7EEEA /* Default@2x.png in Resources */,
+				27DDDE3916B4193100B7EEEA /* Default-568h@2x.png in Resources */,
+				27DDDE3C16B4193100B7EEEA /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27DDDE1A16B4193100B7EEEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27DDDE2F16B4193100B7EEEA /* main.m in Sources */,
+				27DDDE3316B4193100B7EEEA /* ggjAppDelegate.m in Sources */,
+				27DDDE3F16B4193100B7EEEA /* ggjViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		27DDDE2B16B4193100B7EEEA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27DDDE2C16B4193100B7EEEA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		27DDDE3A16B4193100B7EEEA /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27DDDE3B16B4193100B7EEEA /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		27DDDE4016B4193100B7EEEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		27DDDE4116B4193100B7EEEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27DDDE4316B4193100B7EEEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cardiac Castle/Cardiac Castle-Prefix.pch";
+				INFOPLIST_FILE = "Cardiac Castle/Cardiac Castle-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		27DDDE4416B4193100B7EEEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cardiac Castle/Cardiac Castle-Prefix.pch";
+				INFOPLIST_FILE = "Cardiac Castle/Cardiac Castle-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27DDDE1816B4193100B7EEEA /* Build configuration list for PBXProject "Cardiac Castle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27DDDE4016B4193100B7EEEA /* Debug */,
+				27DDDE4116B4193100B7EEEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27DDDE4216B4193100B7EEEA /* Build configuration list for PBXNativeTarget "Cardiac Castle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27DDDE4316B4193100B7EEEA /* Debug */,
+				27DDDE4416B4193100B7EEEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27DDDE1516B4193100B7EEEA /* Project object */;
+}
