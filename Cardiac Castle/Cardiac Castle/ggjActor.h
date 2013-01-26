@@ -15,5 +15,6 @@
 @property CGPoint position;
 @property (strong) UIImage *image;
 @property CGPoint velocity;
+@property CGSize size;
 
 @end

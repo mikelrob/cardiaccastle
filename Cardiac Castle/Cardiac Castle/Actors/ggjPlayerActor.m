@@ -10,4 +10,16 @@
 
 @implementation ggjPlayerActor
 
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+        [self setVelocity: CGPointMake(0, 0)];
+        [self setImage: [UIImage imageWithContentsOfFile:@""]];
+        [self setSize: [[self image] size] ];
+    }
+    return self;
+}
+
 @end
