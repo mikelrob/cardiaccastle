@@ -16,7 +16,7 @@
     if (self)
     {
         [self setVelocity: CGPointMake(0, 1)];
-        [self setImage: [UIImage imageWithContentsOfFile:@""]];
+        [self setImage: [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mon2_walk" ofType:@"png"]]];
         [self setSize: [[self image] size] ];
     }
     return self;

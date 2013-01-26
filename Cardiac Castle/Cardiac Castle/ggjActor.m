@@ -23,17 +23,5 @@
     return self;
 }
 
-- (id)initWithImage:(UIImage *)initImage{
-    
-    if (self = [super init]) {
-        self.position = CGPointMake(0, 0);
-        self.velocity = CGPointMake(0, 0);
-        self.size = CGSizeMake(0, 0);
-        self.image = initImage;
-        self.actorImageView = [[UIImageView alloc] initWithImage:initImage];
-    }
-    return self;
-}
-
 
 @end

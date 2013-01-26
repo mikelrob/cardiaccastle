@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ggjActorFactory.h"
+#import "ggjMonsterFactory.h"
+#import "ggjObstacleFactory.h"
 #import "ggjVictoryChecker.h"
 #import "ggjPlayerActor.h"
 #import <AVFoundation/AVFoundation.h>
@@ -46,8 +47,8 @@
     CMMotionManager *motionManager;
 }
 
-@property (strong) ggjActorFactory *monsterFactory;
-@property (strong) ggjActorFactory *obstacleFactory;
+@property (strong) ggjMonsterFactory *monsterFactory;
+@property (strong) ggjObstacleFactory *obstacleFactory;
 @property (strong) ggjPlayerActor *player;
 @property (strong) NSMutableArray *monsters;
 @property (strong) NSMutableArray *obstacles;
@@ -55,8 +56,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *BGImage;
 
 @property (strong) UIImageView *playerSprite;
-@property (strong) NSArray *monsterSprites;
-@property (strong) NSArray *obstacleSprites;
+//@property (strong) NSArray *monsterSprites;
+//@property (strong) NSArray *obstacleSprites;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *HRLabel;

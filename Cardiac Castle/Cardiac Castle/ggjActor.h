@@ -18,6 +18,5 @@
 @property CGSize size;
 @property UIImageView *actorImageView;
 
-- (id)initWithImage:(UIImage *)initImage;
 
 @end

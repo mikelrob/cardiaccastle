@@ -11,4 +11,6 @@
 
 @interface ggjMonsterFactory : ggjActorFactory
 
+- (ggjMonsterActor *)spawnActor;
+
 @end

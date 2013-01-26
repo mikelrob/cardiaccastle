@@ -14,7 +14,8 @@
     return [super shouldSpawnThisWave];
 }
 
-- (ggjActor *)spawnActor{
-    return (ggjMonsterActor *)[super spawnActor];
+- (ggjMonsterActor *)spawnActor{
+    ggjMonsterActor* newMonster = [[ggjMonsterActor alloc] init];
+    return newMonster;
 }
 @end
