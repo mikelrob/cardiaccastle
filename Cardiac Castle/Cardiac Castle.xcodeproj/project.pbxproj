@@ -123,15 +123,7 @@
 		27DDDE1316B4193100B7EEEA = {
 			isa = PBXGroup;
 			children = (
-				27C0B4A716B474C900835648 /* CoreMotion.framework */,
 				3EC8D0F816B4450000F7F46A /* Resources */,
-				27C0B25B16B43FAC00835648 /* CoreMedia.framework */,
-				27C0B25916B43D6300835648 /* AssetsLibrary.framework */,
-				27C0B25716B43D4D00835648 /* MediaPlayer.framework */,
-				27C0B25516B43D4200835648 /* MobileCoreServices.framework */,
-				27C0B25316B43D3700835648 /* QuartzCore.framework */,
-				27C0B25116B43D2100835648 /* CoreVideo.framework */,
-				27C0B24F16B43D0F00835648 /* AVFoundation.framework */,
 				27DDDE4B16B41E5B00B7EEEA /* Factories */,
 				27DDDE4916B41E4D00B7EEEA /* Actors */,
 				27DDDE2816B4193100B7EEEA /* Cardiac Castle */,
@@ -151,6 +143,14 @@
 		27DDDE2116B4193100B7EEEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27C0B25B16B43FAC00835648 /* CoreMedia.framework */,
+				27C0B25916B43D6300835648 /* AssetsLibrary.framework */,
+				27C0B25716B43D4D00835648 /* MediaPlayer.framework */,
+				27C0B25516B43D4200835648 /* MobileCoreServices.framework */,
+				27C0B25316B43D3700835648 /* QuartzCore.framework */,
+				27C0B25116B43D2100835648 /* CoreVideo.framework */,
+				27C0B24F16B43D0F00835648 /* AVFoundation.framework */,
+				27C0B4A716B474C900835648 /* CoreMotion.framework */,
 				27DDDE2216B4193100B7EEEA /* UIKit.framework */,
 				27DDDE2416B4193100B7EEEA /* Foundation.framework */,
 				27DDDE2616B4193100B7EEEA /* CoreGraphics.framework */,

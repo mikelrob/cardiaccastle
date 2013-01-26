@@ -8,12 +8,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cardiac Castle/Cardiac Castle/ggjGameViewController.m"
-         timestampString = "380932909.750619"
+         timestampString = "380934400.573355"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "98"
          endingLineNumber = "98"
          landmarkName = "-spawnMonsters"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Cardiac Castle/Cardiac Castle/ggjGameViewController.m"
+         timestampString = "380934464.115474"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
+         landmarkName = "-moveMonsters:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

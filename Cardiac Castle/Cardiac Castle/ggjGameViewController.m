@@ -99,7 +99,7 @@
     if ([self.monsters count] == 0 || [self.monsterFactory shouldSpawnThisWave]) {
         ggjMonsterActor *newMonster = [self.monsterFactory spawnActor];
         CGPoint startPosition = self.player.position;
-        startPosition.y = 0;
+        startPosition.y = self.view.frame.size.height;
         newMonster.position = startPosition;
         
         CGRect startFrame = CGRectMake(newMonster.position.x, newMonster.position.y,
@@ -127,9 +127,12 @@
         CGPoint newPosition = monster.position;
         newPosition.x += monster.velocity.x;
         newPosition.y += monster.velocity.y;
-         dispatch_async(dispatch_get_main_queue(), ^{
+        monster.position = newPosition;
+        dispatch_async(dispatch_get_main_queue(), ^{
              [UIView animateWithDuration:timeElapsed animations:^{
-                 
+                 CGRect newRect = monster.actorImageView.frame;
+                 newRect.origin.x = monster.position.x;
+                 newRect.origin.y = monster.position.y;
             }];
          });
     }
@@ -256,7 +259,7 @@
                 lastLoopDate = currentTime;
                 
                 [self movePlayer:timeElapsedThisLoop];
-                [self moveMonsters: timeElapsedThisLoop];
+//                [self moveMonsters: timeElapsedThisLoop];
                 [self moveBackground: timeElapsedThisLoop];
                 [self moveObstacles: timeElapsedThisLoop];
                 
