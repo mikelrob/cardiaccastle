@@ -103,12 +103,16 @@
 
 - (void) moveMonsters: (NSTimeInterval) timeElapsed
 {
-    for (ggjMonsterActor *monster in [self monsters])
-    {
-        CGPoint newPos = CGPointMake( [monster position].x + (timeElapsed * [monster velocity].x), [monster position].y + (timeElapsed * [monster velocity].y));
-        
-        [monster setPosition: newPos];
+    if ([self.monsters ]) {
+        <#statements#>
     }
+//    
+//    for (ggjMonsterActor *monster in [self monsters])
+//    {
+//        CGPoint newPos = CGPointMake( [monster position].x + (timeElapsed * [monster velocity].x), [monster position].y + (timeElapsed * [monster velocity].y));
+//        
+//        [monster setPosition: newPos];
+//    }
 }
 
 - (void) moveObstacles: (NSTimeInterval) timeElapsed
