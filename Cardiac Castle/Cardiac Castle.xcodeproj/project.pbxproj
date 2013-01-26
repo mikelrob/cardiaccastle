@@ -35,6 +35,11 @@
 		3EC8D0F416B444F500F7F46A /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0F116B444F500F7F46A /* brick.png */; };
 		3EC8D0F516B444F500F7F46A /* cat_walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0F216B444F500F7F46A /* cat_walk.png */; };
 		3EC8D0F616B444F500F7F46A /* mon2_walk.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0F316B444F500F7F46A /* mon2_walk.png */; };
+		3EC8D0FE16B4572000F7F46A /* player death by monster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0F916B4572000F7F46A /* player death by monster.mp3 */; };
+		3EC8D0FF16B4572000F7F46A /* player death by obstacle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0FA16B4572000F7F46A /* player death by obstacle.mp3 */; };
+		3EC8D10016B4572000F7F46A /* monster death.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0FB16B4572000F7F46A /* monster death.wav */; };
+		3EC8D10116B4572000F7F46A /* heart beat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0FC16B4572000F7F46A /* heart beat.mp3 */; };
+		3EC8D10216B4572000F7F46A /* spawn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0FD16B4572000F7F46A /* spawn.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +83,11 @@
 		3EC8D0F116B444F500F7F46A /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brick.png; path = "Cardiac Castle/Resources/brick.png"; sourceTree = "<group>"; };
 		3EC8D0F216B444F500F7F46A /* cat_walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cat_walk.png; path = "Cardiac Castle/Resources/cat_walk.png"; sourceTree = "<group>"; };
 		3EC8D0F316B444F500F7F46A /* mon2_walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mon2_walk.png; path = "Cardiac Castle/Resources/mon2_walk.png"; sourceTree = "<group>"; };
+		3EC8D0F916B4572000F7F46A /* player death by monster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "player death by monster.mp3"; sourceTree = "<group>"; };
+		3EC8D0FA16B4572000F7F46A /* player death by obstacle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "player death by obstacle.mp3"; sourceTree = "<group>"; };
+		3EC8D0FB16B4572000F7F46A /* monster death.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "monster death.wav"; sourceTree = "<group>"; };
+		3EC8D0FC16B4572000F7F46A /* heart beat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "heart beat.mp3"; sourceTree = "<group>"; };
+		3EC8D0FD16B4572000F7F46A /* spawn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spawn.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +206,11 @@
 		3EC8D0F816B4450000F7F46A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3EC8D0F916B4572000F7F46A /* player death by monster.mp3 */,
+				3EC8D0FA16B4572000F7F46A /* player death by obstacle.mp3 */,
+				3EC8D0FB16B4572000F7F46A /* monster death.wav */,
+				3EC8D0FC16B4572000F7F46A /* heart beat.mp3 */,
+				3EC8D0FD16B4572000F7F46A /* spawn.mp3 */,
 				3EC8D0F116B444F500F7F46A /* brick.png */,
 				3EC8D0F216B444F500F7F46A /* cat_walk.png */,
 				3EC8D0F316B444F500F7F46A /* mon2_walk.png */,
@@ -263,6 +278,11 @@
 				3EC8D0F416B444F500F7F46A /* brick.png in Resources */,
 				3EC8D0F516B444F500F7F46A /* cat_walk.png in Resources */,
 				3EC8D0F616B444F500F7F46A /* mon2_walk.png in Resources */,
+				3EC8D0FE16B4572000F7F46A /* player death by monster.mp3 in Resources */,
+				3EC8D0FF16B4572000F7F46A /* player death by obstacle.mp3 in Resources */,
+				3EC8D10016B4572000F7F46A /* monster death.wav in Resources */,
+				3EC8D10116B4572000F7F46A /* heart beat.mp3 in Resources */,
+				3EC8D10216B4572000F7F46A /* spawn.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
