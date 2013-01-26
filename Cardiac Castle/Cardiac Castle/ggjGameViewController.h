@@ -49,8 +49,8 @@
 @property (strong) ggjActorFactory *monsterFactory;
 @property (strong) ggjActorFactory *obstacleFactory;
 @property (strong) ggjPlayerActor *player;
-@property (strong) NSArray *monsters;
-@property (strong) NSArray *obstacles;
+@property (strong) NSMutableArray *monsters;
+@property (strong) NSMutableArray *obstacles;
 @property (strong) ggjVictoryChecker *victoryChecker;
 @property (strong, nonatomic) IBOutlet UIImageView *BGImage;
 

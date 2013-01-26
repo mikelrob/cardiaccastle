@@ -17,7 +17,7 @@
 @property CGFloat heartRate;
 @property (strong) ggjActor *actorToSpawn;
 
-- (void) spawnNextWave;
-- (void) forceSpawnActors: (NSUInteger) number;
+- (BOOL) shouldSpawnThisWave;
+- (ggjActor *)spawnActor;
 
 @end

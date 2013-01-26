@@ -41,6 +41,8 @@
 		3EC8D10016B4572000F7F46A /* monster death.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0FB16B4572000F7F46A /* monster death.wav */; };
 		3EC8D10116B4572000F7F46A /* heart beat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0FC16B4572000F7F46A /* heart beat.mp3 */; };
 		3EC8D10216B4572000F7F46A /* spawn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3EC8D0FD16B4572000F7F46A /* spawn.mp3 */; };
+		3EC9DEFD16B478FB0039AD94 /* ggjMonsterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9DEFC16B478FB0039AD94 /* ggjMonsterFactory.m */; };
+		3EC9DF0116B479510039AD94 /* ggjObstacleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9DF0016B479510039AD94 /* ggjObstacleFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,10 @@
 		3EC8D0FB16B4572000F7F46A /* monster death.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "monster death.wav"; sourceTree = "<group>"; };
 		3EC8D0FC16B4572000F7F46A /* heart beat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "heart beat.mp3"; sourceTree = "<group>"; };
 		3EC8D0FD16B4572000F7F46A /* spawn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spawn.mp3; sourceTree = "<group>"; };
+		3EC9DEFB16B478FB0039AD94 /* ggjMonsterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ggjMonsterFactory.h; path = "Cardiac Castle/ggjMonsterFactory.h"; sourceTree = "<group>"; };
+		3EC9DEFC16B478FB0039AD94 /* ggjMonsterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjMonsterFactory.m; path = "Cardiac Castle/ggjMonsterFactory.m"; sourceTree = "<group>"; };
+		3EC9DEFF16B479510039AD94 /* ggjObstacleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ggjObstacleFactory.h; path = "Cardiac Castle/ggjObstacleFactory.h"; sourceTree = "<group>"; };
+		3EC9DF0016B479510039AD94 /* ggjObstacleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjObstacleFactory.m; path = "Cardiac Castle/ggjObstacleFactory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +209,10 @@
 			children = (
 				27DDDE5516B4202B00B7EEEA /* ggjActorFactory.h */,
 				27DDDE5616B4202B00B7EEEA /* ggjActorFactory.m */,
+				3EC9DEFB16B478FB0039AD94 /* ggjMonsterFactory.h */,
+				3EC9DEFC16B478FB0039AD94 /* ggjMonsterFactory.m */,
+				3EC9DEFF16B479510039AD94 /* ggjObstacleFactory.h */,
+				3EC9DF0016B479510039AD94 /* ggjObstacleFactory.m */,
 			);
 			name = Factories;
 			sourceTree = "<group>";
@@ -307,6 +317,8 @@
 				27DDDE5716B4202B00B7EEEA /* ggjActorFactory.m in Sources */,
 				3E6ADA9D16B42E2000251CB2 /* ggjGameViewController.m in Sources */,
 				27C0B24916B4307100835648 /* ggjVictoryChecker.m in Sources */,
+				3EC9DEFD16B478FB0039AD94 /* ggjMonsterFactory.m in Sources */,
+				3EC9DF0116B479510039AD94 /* ggjObstacleFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

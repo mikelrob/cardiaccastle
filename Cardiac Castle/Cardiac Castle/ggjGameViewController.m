@@ -95,6 +95,10 @@
 - (void) spawnMonsters
 {
     [[self monsterFactory] setHeartRate:heartRate];
+    if ([self.monsters count] == 0 || [self.monsterFactory shouldSpawnThisWave]) {
+        ggjMonsterActor *newMonster = [self.monsterFactory spawnActor];
+        [self.monsters addObject:newMonster];
+    }
 }
 
 - (void) spawnObstacles
@@ -105,8 +109,8 @@
 
 - (void) moveMonsters: (NSTimeInterval) timeElapsed
 {
-    if ([self.monsters ]) {
-        <#statements#>
+    if ([self.monsters count] == 0) {
+        [self.monsters addObject:[self.monsterFactory spawnActor]];
     }
 //    
 //    for (ggjMonsterActor *monster in [self monsters])

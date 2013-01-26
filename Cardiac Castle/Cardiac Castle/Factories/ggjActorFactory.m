@@ -10,4 +10,17 @@
 
 @implementation ggjActorFactory
 
+- (BOOL)shouldSpawnThisWave{
+    if (true) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+- (ggjActor *)spawnActor{
+    ggjActor *newActor = [[ggjActor alloc] init];
+    
+    return newActor;
+}
+
 @end
