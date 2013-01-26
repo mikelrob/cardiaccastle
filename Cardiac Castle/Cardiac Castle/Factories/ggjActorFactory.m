@@ -11,7 +11,7 @@
 @implementation ggjActorFactory
 
 - (BOOL)shouldSpawnThisWave{
-    if (true) {
+    if (false) {
         return TRUE;
     }
     return FALSE;
