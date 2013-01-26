@@ -58,6 +58,7 @@
 
 - (void) setupBackgroundImage
 {
+ 
     
 }
 
@@ -77,6 +78,12 @@
     [[self player] setPosition: CGPointMake( [[self view] frame].origin.x + (0.5 * [[self view] frame].size.width) , [[self view] frame].origin.y + (0.5 * [[self view] frame].size.height))];
     
     [[self player] setVelocity:CGPointMake(0.01, 0)];
+    self.playerSprite = [[UIImageView alloc] initWithImage:self.player.image];
+    CGRect playerSpriteRect = CGRectMake(self.player.position.x, self.player.position.y,
+                                         self.player.size.width, self.player.size.height);
+    self.playerSprite.frame = playerSpriteRect;
+    
+    [self.view addSubview:self.playerSprite];
 }
 
 - (void) spawnMonsters
@@ -117,9 +124,19 @@
 
 - (void) movePlayer: (NSTimeInterval) timeElapsed
 {
-    CGPoint newPos = CGPointMake( [[self player] position].x + (timeElapsed * [[self player] velocity].x), [[self player] position].y + (timeElapsed * [[self player] velocity].y));
+//    CGPoint newPos = CGPointMake( [[self player] position].x + (timeElapsed * [[self player] velocity].x), [[self player] position].y + (timeElapsed * [[self player] velocity].y));
     
-    [[self player] setPosition: newPos];
+//    [[self player] setPosition: newPos];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:timeElapsed animations:^{
+            
+            CGRect newFrame = self.playerSprite.frame;
+            newFrame.origin.x += 2;
+            self.playerSprite.frame = newFrame;
+        }];
+
+    });
+    
 }
 
 -(UIImage*) drawSprite:(UIImage*) fgImage
@@ -154,11 +171,11 @@
     
     
     [self setVictoryChecker: [[ggjVictoryChecker alloc] init]];
-    [[self victoryChecker] setMonsterFactory:[self monsterFactory]];
+//    [[self victoryChecker] setMonsterFactory:[self monsterFactory]];
     [[self victoryChecker] setPlayerDistanceTravelled:0.0];
     [[self victoryChecker] setPlayerPosition: [[self player] position]];
-    [[self victoryChecker] setMonsterPositions: [@[] mutableCopy]];
-    [[self victoryChecker] setObstaclePositions: [@[] mutableCopy]];
+//    [[self victoryChecker] setMonsterPositions: [@[] mutableCopy]];
+//    [[self victoryChecker] setObstaclePositions: [@[] mutableCopy]];
     
     [self setupBackgroundImage];
     [self spawnPlayer];
