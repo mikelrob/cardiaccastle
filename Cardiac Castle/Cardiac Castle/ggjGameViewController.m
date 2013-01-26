@@ -47,6 +47,8 @@
     
     [self measureHeartRate];
     
+    NSLog(@"Hello");
+    
     
 }
 
