@@ -70,28 +70,6 @@
     
 }
 
-- (void) renderFrame
-{
-    UIImage *imageToDraw = backgroundImage;
-    imageToDraw = [self drawSprite:[[self player] image] inImage:imageToDraw atPoint:[[self player] position] ];
-    
-//    for (ggjMonsterActor *monster in [self monsters])
-//    {
-//        imageToDraw = [self drawSprite:[monster image] inImage:imageToDraw atPoint:[monster position] ];
-//    }
-//    
-//    for (ggjObstacleActor *obstacle in [self obstacles])
-//    {
-//        imageToDraw = [self drawSprite:[ obstacle image] inImage:imageToDraw atPoint:[obstacle position] ];
-//        
-//    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[self BGImage] setImage: imageToDraw ];
-        [[self BGImage] setNeedsDisplay];
-
-    });
-}
 
 - (void) spawnPlayer
 {
@@ -195,10 +173,11 @@
             NSDate *currentTime = [NSDate date];
             
             timeElapsedThisLoop = [currentTime timeIntervalSinceDate: lastLoopDate];
-            lastLoopDate = currentTime;
             
             if (timeElapsedThisLoop >= 0.03)
             {
+                lastLoopDate = currentTime;
+                
                 [self movePlayer:timeElapsedThisLoop];
                 [self moveMonsters: timeElapsedThisLoop];
                 [self moveBackground: timeElapsedThisLoop];
@@ -209,8 +188,6 @@
                     [self spawnMonsters];
                     [self spawnObstacles];
                 }
-                
-                [self renderFrame];
             }
         }
     });
