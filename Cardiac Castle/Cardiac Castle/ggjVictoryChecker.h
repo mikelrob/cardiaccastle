@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "ggjActorFactory.h"
+#import "ggjMonsterActor.h"
+#import "ggjObstacleActor.h"
 
 @interface ggjVictoryChecker : NSObject
 
 @property CGPoint playerPosition;
 @property CGFloat playerDistanceTravelled;
-@property (strong) NSArray *monsterPositions;
-@property (strong) NSArray *obstaclePositions;
-@property (weak) ggjActorFactory *monsterFactory;
+@property (strong) NSArray *monsters;
+@property (strong) NSArray *obstacles;
 
-- (BOOL) killMonster: (NSUInteger) index;
 - (BOOL) endGame;
 
 @end
