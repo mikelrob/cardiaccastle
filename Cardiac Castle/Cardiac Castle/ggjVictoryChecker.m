@@ -10,4 +10,11 @@
 
 @implementation ggjVictoryChecker
 
+- (BOOL) endGame
+{
+    return NO;
+}
+
+
+
 @end

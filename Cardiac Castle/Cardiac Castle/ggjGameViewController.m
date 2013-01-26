@@ -42,6 +42,9 @@
     ratesArray = [NSMutableArray new];
     
     measureQueue = dispatch_queue_create("cameraQueue", NULL);
+    
+    backgroundImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"brick" ofType:@"png"]];
+    
     [self measureHeartRate];
     
     
@@ -67,11 +70,35 @@
     
 }
 
+- (void) renderFrame
+{
+    UIImage *imageToDraw = backgroundImage;
+    imageToDraw = [self drawSprite:[[self player] image] inImage:imageToDraw atPoint:[[self player] position] ];
+    
+//    for (ggjMonsterActor *monster in [self monsters])
+//    {
+//        imageToDraw = [self drawSprite:[monster image] inImage:imageToDraw atPoint:[monster position] ];
+//    }
+//    
+//    for (ggjObstacleActor *obstacle in [self obstacles])
+//    {
+//        imageToDraw = [self drawSprite:[ obstacle image] inImage:imageToDraw atPoint:[obstacle position] ];
+//        
+//    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[self BGImage] setImage: imageToDraw ];
+        [[self BGImage] setNeedsDisplay];
+
+    });
+}
+
 - (void) spawnPlayer
 {
     [self setPlayer: [[ggjPlayerActor alloc]init]];
     [[self player] setPosition: CGPointMake( [[self view] frame].origin.x + (0.5 * [[self view] frame].size.width) , [[self view] frame].origin.y + (0.5 * [[self view] frame].size.height))];
     
+    [[self player] setVelocity:CGPointMake(0.01, 0)];
 }
 
 - (void) spawnMonsters
@@ -85,19 +112,49 @@
     
 }
 
-- (void) moveMonsters
+- (void) moveMonsters: (NSTimeInterval) timeElapsed
+{
+    for (ggjMonsterActor *monster in [self monsters])
+    {
+        CGPoint newPos = CGPointMake( [monster position].x + (timeElapsed * [monster velocity].x), [monster position].y + (timeElapsed * [monster velocity].y));
+        
+        [monster setPosition: newPos];
+    }
+}
+
+- (void) moveObstacles: (NSTimeInterval) timeElapsed
+{
+    for (ggjObstacleActor *obstacle in [self obstacles])
+    {
+        CGPoint newPos = CGPointMake( [obstacle position].x + (timeElapsed * [obstacle velocity].x), [obstacle position].y + (timeElapsed * [obstacle velocity].y));
+        
+        [obstacle setPosition: newPos];
+    }
+}
+
+- (void) moveBackground: (NSTimeInterval) timeElapsed
 {
     
 }
 
-- (void) moveObstacles
+- (void) movePlayer: (NSTimeInterval) timeElapsed
 {
+    CGPoint newPos = CGPointMake( [[self player] position].x + (timeElapsed * [[self player] velocity].x), [[self player] position].y + (timeElapsed * [[self player] velocity].y));
     
+    [[self player] setPosition: newPos];
 }
 
-- (void) moveBackground
+-(UIImage*) drawSprite:(UIImage*) fgImage
+              inImage:(UIImage*) bgImage
+              atPoint:(CGPoint)  point
 {
+    UIGraphicsBeginImageContextWithOptions(bgImage.size, FALSE, 0.0);
+    [bgImage drawInRect:CGRectMake( 0, 0, bgImage.size.width, bgImage.size.height)];
+    [fgImage drawInRect:CGRectMake( point.x, point.y, fgImage.size.width, fgImage.size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
+    return newImage;
 }
 
 - (void) startGameLoop
@@ -132,22 +189,28 @@
     
     __block NSDate *lastLoopDate = [NSDate date];
     dispatch_async(gameLoopQueue, ^{
-        
-        NSDate *currentTime = [NSDate date];
-        
-        NSTimeInterval timeElapsed = [currentTime timeIntervalSinceDate: lastLoopDate];
-        lastLoopDate = currentTime;
-        
-        if (timeElapsed >= 0.02)
+       
+        while (isPlaying)
         {
-            [self moveMonsters];
-            [self moveBackground];
-            [self moveObstacles];
+            NSDate *currentTime = [NSDate date];
             
-            if(NO == [[self victoryChecker] endGame])
+            NSTimeInterval timeElapsed = [currentTime timeIntervalSinceDate: lastLoopDate];
+            lastLoopDate = currentTime;
+            
+            if (timeElapsed >= 1/30)
             {
-                [self spawnMonsters];
-                [self spawnObstacles];
+                [self movePlayer:timeElapsed];
+                [self moveMonsters: timeElapsed];
+                [self moveBackground: timeElapsed];
+                [self moveObstacles: timeElapsed];
+                
+                if(NO == [[self victoryChecker] endGame])
+                {
+                    [self spawnMonsters];
+                    [self spawnObstacles];
+                }
+                
+                [self renderFrame];
             }
         }
     });
@@ -155,7 +218,7 @@
 
 - (void) stopGameLoop
 {
-    
+    isPlaying = NO;
 }
 
 - (void) startMeasurementLoop
@@ -177,6 +240,7 @@
     midValue = totalValue / valuesCount;
     lastFlipTime = [[NSDate date] timeIntervalSinceReferenceDate];
     isPlaying = YES;
+    [self startGameLoop];
 }
 
 struct pixel {
@@ -330,7 +394,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         
         const CGFloat *components = CGColorGetComponents(cgColor);
         CGFloat red = components[0];
-        
+    
         if ([redsArray count] > 0)
         {
             movingRedAve = movingRedAve + red/([redsArray count]+1) - [[redsArray objectAtIndex:0] floatValue]/([redsArray count]+1);

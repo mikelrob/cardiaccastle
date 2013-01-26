@@ -15,8 +15,9 @@
     self = [super init];
     if (self)
     {
-        [self setVelocity: CGPointMake(0, 0)];
-        [self setImage: [UIImage imageWithContentsOfFile:@""]];
+        [self setVelocity: CGPointMake(0, 0.01)];
+        
+        [self setImage: [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"cat_walk" ofType:@"png"]]];
         [self setSize: [[self image] size] ];
     }
     return self;

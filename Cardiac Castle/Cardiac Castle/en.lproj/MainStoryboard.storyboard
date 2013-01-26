@@ -57,7 +57,7 @@
         <scene sceneID="TdD-Im-xgo">
             <objects>
                 <viewController id="cyD-m3-US5" customClass="ggjGameViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HwM-h2-1FS">
+                    <view key="view" contentMode="scaleToFill" id="HwM-h2-1FS" customClass="UIImageView">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -69,12 +69,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GFf-iS-183" firstAttribute="leading" secondItem="HwM-h2-1FS" secondAttribute="leading" constant="129" id="8CP-Pt-s0P"/>
-                            <constraint firstItem="GFf-iS-183" firstAttribute="top" secondItem="HwM-h2-1FS" secondAttribute="top" constant="234" id="aYM-iI-aRR"/>
+                            <constraint firstItem="GFf-iS-183" firstAttribute="top" secondItem="HwM-h2-1FS" secondAttribute="top" constant="20" symbolic="YES" type="default" id="GEi-8k-VcC"/>
+                            <constraint firstItem="GFf-iS-183" firstAttribute="leading" secondItem="HwM-h2-1FS" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="eYk-FW-JXm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Nv-z6-vHN"/>
                     <connections>
+                        <outlet property="BGImage" destination="HwM-h2-1FS" id="Cmd-6B-42o"/>
                         <outlet property="HRLabel" destination="GFf-iS-183" id="8Q2-0S-9Ez"/>
                     </connections>
                 </viewController>

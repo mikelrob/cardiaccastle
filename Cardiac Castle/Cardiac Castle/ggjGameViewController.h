@@ -48,6 +48,11 @@
 @property (strong) NSArray *monsters;
 @property (strong) NSArray *obstacles;
 @property (strong) ggjVictoryChecker *victoryChecker;
+@property (strong, nonatomic) IBOutlet UIImageView *BGImage;
+
+@property (strong) UIImageView *playerSprite;
+@property (strong) NSArray *monsterSprites;
+@property (strong) NSArray *obstacleSprites;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *HRLabel;
