@@ -11,6 +11,7 @@
 #import "ggjVictoryChecker.h"
 #import "ggjPlayerActor.h"
 #import <AVFoundation/AVFoundation.h>
+#import <CoreMotion/CoreMotion.h>
 
 @interface ggjGameViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate>
 {
@@ -41,6 +42,8 @@
     CGFloat movingRedAve;
     NSTimer *measuringTimer;
     NSTimeInterval timeElapsedThisLoop;
+    
+    CMMotionManager *motionManager;
 }
 
 @property (strong) ggjActorFactory *monsterFactory;

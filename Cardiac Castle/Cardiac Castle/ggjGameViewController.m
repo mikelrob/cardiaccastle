@@ -47,6 +47,8 @@
     
     backgroundImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"brick" ofType:@"png"]];
     
+    motionManager = [[CMMotionManager alloc] init];
+    
     [self measureHeartRate];
     
     NSLog(@"Hello");
@@ -137,9 +139,17 @@
 //    [[self player] setPosition: newPos];
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:timeElapsed animations:^{
-            
             CGRect newFrame = self.playerSprite.frame;
-            newFrame.origin.x += 2;
+            CGFloat newOriginX = newFrame.origin.x - ([[motionManager gyroData] rotationRate].z * 12);
+            if (newOriginX + newFrame.size.width > [[self view] frame].size.width)
+            {
+                newOriginX = self.view.frame.size.width - newFrame.size.width;
+            }
+            else if (newOriginX  < 0)
+            {
+                newOriginX = 0;
+            }
+            newFrame.origin.x = newOriginX;
             self.playerSprite.frame = newFrame;
         }];
 
@@ -162,6 +172,8 @@
 
 - (void) startGameLoop
 {
+    [motionManager startGyroUpdates];
+    
     [self setMonsterFactory: [[ggjActorFactory alloc] init]];
     [[self monsterFactory] setActorToSpawn: [[ggjMonsterActor alloc] init]];
     [[self monsterFactory] setDistTravelled:0.0];
@@ -221,6 +233,7 @@
 - (void) stopGameLoop
 {
     isPlaying = NO;
+    [motionManager stopGyroUpdates];
 }
 
 - (void) startMeasurementLoop
