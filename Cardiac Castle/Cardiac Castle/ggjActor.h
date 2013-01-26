@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface ggjActor : NSObject
+{
+}
+
+@property CGPoint position;
+@property (strong) UIImage *image;
+@property CGPoint velocity;
 
 @end
