@@ -144,14 +144,17 @@
 
 - (void) moveObstacles: (NSTimeInterval) timeElapsed
 {
-    [UIView animateWithDuration:timeElapsed animations:^{
-        for (ggjObstacleActor *obstacle in self.obstacles) {
-            CGPoint newPosition = obstacle.position;
-            newPosition.y -= obstacle.velocity.y;
-            obstacle.position = newPosition;
-            
-        }
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:timeElapsed animations:^{
+            for (ggjObstacleActor *obstacle in self.obstacles) {
+                CGPoint newPosition = obstacle.position;
+                newPosition.y -= obstacle.velocity.y;
+                obstacle.position = newPosition;
+                
+            }
+        }];
+
+    });
     
 //    for (ggjObstacleActor *obstacle in [self obstacles])
 //    {
@@ -209,11 +212,13 @@
     [motionManager startGyroUpdates];
     
     [self setMonsterFactory: [[ggjMonsterFactory alloc] init]];
-    [[self monsterFactory] setActorToSpawn: [[ggjMonsterActor alloc] init]];
+    [[self monsterFactory] setMonsterImage: [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"mon2_walk" ofType:@"png"]]];
+//    [[self monsterFactory] setActorToSpawn: [[ggjMonsterActor alloc] init]];
     [[self monsterFactory] setDistTravelled:0.0];
     [[self monsterFactory] setBaseSpawnProb:0.003];
     [[self monsterFactory] setHeartRate:heartRate];
     [[self monsterFactory] setNumActorsAlive:0];
+    self.monsters = [NSMutableArray new];
     
     
     [self setObstacleFactory: [[ggjObstacleFactory alloc] init]];
@@ -222,6 +227,7 @@
     [[self obstacleFactory] setBaseSpawnProb:0.03];
     [[self obstacleFactory] setHeartRate:heartRate];
     [[self obstacleFactory] setNumActorsAlive:0];
+    self.obstacles = [NSMutableArray new];
     
     
     [self setVictoryChecker: [[ggjVictoryChecker alloc] init]];

@@ -9,7 +9,10 @@
 #import "ggjActorFactory.h"
 #import "ggjMonsterActor.h"
 
-@interface ggjMonsterFactory : ggjActorFactory
+@interface ggjMonsterFactory : ggjActorFactory{
+}
+
+@property (strong) UIImage *monsterImage;
 
 - (ggjMonsterActor *)spawnActor;
 

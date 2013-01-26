@@ -10,12 +10,15 @@
 
 @implementation ggjMonsterFactory
 
+
+
 - (BOOL)shouldSpawnThisWave{
     return [super shouldSpawnThisWave];
 }
 
 - (ggjMonsterActor *)spawnActor{
     ggjMonsterActor* newMonster = [[ggjMonsterActor alloc] init];
+    [newMonster setImage: [self monsterImage]];
     return newMonster;
 }
 @end
