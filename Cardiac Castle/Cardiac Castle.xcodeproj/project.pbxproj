@@ -21,6 +21,7 @@
 		27DDDE4E16B41EF800B7EEEA /* ggjPlayerActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE4D16B41EF800B7EEEA /* ggjPlayerActor.m */; };
 		27DDDE5116B41F0D00B7EEEA /* ggjMonsterActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE5016B41F0D00B7EEEA /* ggjMonsterActor.m */; };
 		27DDDE5416B41F1D00B7EEEA /* ggjObstacleActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE5316B41F1D00B7EEEA /* ggjObstacleActor.m */; };
+		27DDDE5716B4202B00B7EEEA /* ggjActorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE5616B4202B00B7EEEA /* ggjActorFactory.m */; };
 		3E2B2E0516B41AE700F343CD /* ggjActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2E0416B41AE700F343CD /* ggjActor.m */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,8 @@
 		27DDDE5016B41F0D00B7EEEA /* ggjMonsterActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjMonsterActor.m; path = "Cardiac Castle/Actors/ggjMonsterActor.m"; sourceTree = "<group>"; };
 		27DDDE5216B41F1D00B7EEEA /* ggjObstacleActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ggjObstacleActor.h; path = "Cardiac Castle/Actors/ggjObstacleActor.h"; sourceTree = "<group>"; };
 		27DDDE5316B41F1D00B7EEEA /* ggjObstacleActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjObstacleActor.m; path = "Cardiac Castle/Actors/ggjObstacleActor.m"; sourceTree = "<group>"; };
+		27DDDE5516B4202B00B7EEEA /* ggjActorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ggjActorFactory.h; path = "Cardiac Castle/Factories/ggjActorFactory.h"; sourceTree = "<group>"; };
+		27DDDE5616B4202B00B7EEEA /* ggjActorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjActorFactory.m; path = "Cardiac Castle/Factories/ggjActorFactory.m"; sourceTree = "<group>"; };
 		3E2B2E0316B41AE700F343CD /* ggjActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ggjActor.h; path = "Cardiac Castle/ggjActor.h"; sourceTree = "<group>"; };
 		3E2B2E0416B41AE700F343CD /* ggjActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjActor.m; path = "Cardiac Castle/ggjActor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +142,8 @@
 		27DDDE4B16B41E5B00B7EEEA /* Factories */ = {
 			isa = PBXGroup;
 			children = (
+				27DDDE5516B4202B00B7EEEA /* ggjActorFactory.h */,
+				27DDDE5616B4202B00B7EEEA /* ggjActorFactory.m */,
 			);
 			name = Factories;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				27DDDE4E16B41EF800B7EEEA /* ggjPlayerActor.m in Sources */,
 				27DDDE5116B41F0D00B7EEEA /* ggjMonsterActor.m in Sources */,
 				27DDDE5416B41F1D00B7EEEA /* ggjObstacleActor.m in Sources */,
+				27DDDE5716B4202B00B7EEEA /* ggjActorFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
