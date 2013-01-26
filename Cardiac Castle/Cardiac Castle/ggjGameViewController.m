@@ -65,6 +65,7 @@
 - (void) setupBackgroundImage
 {
  
+    [[self BGImage] setImage:backgroundImage];
     
 }
 
