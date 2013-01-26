@@ -1,5 +1,5 @@
 //
-//  ggjViewController.h
+//  ggjMenuViewController.h
 //  Cardiac Castle
 //
 //  Created by Andrew Boyd on 26/01/2013.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ggjViewController : UIViewController
+@interface ggjMenuViewController : UIViewController
 
 @end

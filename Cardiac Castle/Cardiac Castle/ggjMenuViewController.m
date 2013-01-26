@@ -1,18 +1,18 @@
 //
-//  ggjViewController.m
+//  ggjMenuViewController.m
 //  Cardiac Castle
 //
 //  Created by Andrew Boyd on 26/01/2013.
 //  Copyright (c) 2013 GGJ13. All rights reserved.
 //
 
-#import "ggjViewController.h"
+#import "ggjMenuViewController.h"
 
-@interface ggjViewController ()
+@interface ggjMenuViewController ()
 
 @end
 
-@implementation ggjViewController
+@implementation ggjMenuViewController
 
 - (void)viewDidLoad
 {

@@ -17,12 +17,13 @@
 		27DDDE3716B4193100B7EEEA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DDDE3616B4193100B7EEEA /* Default@2x.png */; };
 		27DDDE3916B4193100B7EEEA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DDDE3816B4193100B7EEEA /* Default-568h@2x.png */; };
 		27DDDE3C16B4193100B7EEEA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27DDDE3A16B4193100B7EEEA /* MainStoryboard.storyboard */; };
-		27DDDE3F16B4193100B7EEEA /* ggjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE3E16B4193100B7EEEA /* ggjViewController.m */; };
+		27DDDE3F16B4193100B7EEEA /* ggjMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE3E16B4193100B7EEEA /* ggjMenuViewController.m */; };
 		27DDDE4E16B41EF800B7EEEA /* ggjPlayerActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE4D16B41EF800B7EEEA /* ggjPlayerActor.m */; };
 		27DDDE5116B41F0D00B7EEEA /* ggjMonsterActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE5016B41F0D00B7EEEA /* ggjMonsterActor.m */; };
 		27DDDE5416B41F1D00B7EEEA /* ggjObstacleActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE5316B41F1D00B7EEEA /* ggjObstacleActor.m */; };
 		27DDDE5716B4202B00B7EEEA /* ggjActorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDDE5616B4202B00B7EEEA /* ggjActorFactory.m */; };
 		3E2B2E0516B41AE700F343CD /* ggjActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2B2E0416B41AE700F343CD /* ggjActor.m */; };
+		3E6ADA9D16B42E2000251CB2 /* ggjGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6ADA9C16B42E2000251CB2 /* ggjGameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +41,8 @@
 		27DDDE3616B4193100B7EEEA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		27DDDE3816B4193100B7EEEA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		27DDDE3B16B4193100B7EEEA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		27DDDE3D16B4193100B7EEEA /* ggjViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ggjViewController.h; sourceTree = "<group>"; };
-		27DDDE3E16B4193100B7EEEA /* ggjViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ggjViewController.m; sourceTree = "<group>"; };
+		27DDDE3D16B4193100B7EEEA /* ggjMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ggjMenuViewController.h; sourceTree = "<group>"; };
+		27DDDE3E16B4193100B7EEEA /* ggjMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ggjMenuViewController.m; sourceTree = "<group>"; };
 		27DDDE4C16B41EF800B7EEEA /* ggjPlayerActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ggjPlayerActor.h; path = "Cardiac Castle/Actors/ggjPlayerActor.h"; sourceTree = "<group>"; };
 		27DDDE4D16B41EF800B7EEEA /* ggjPlayerActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjPlayerActor.m; path = "Cardiac Castle/Actors/ggjPlayerActor.m"; sourceTree = "<group>"; };
 		27DDDE4F16B41F0D00B7EEEA /* ggjMonsterActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ggjMonsterActor.h; path = "Cardiac Castle/Actors/ggjMonsterActor.h"; sourceTree = "<group>"; };
@@ -52,6 +53,8 @@
 		27DDDE5616B4202B00B7EEEA /* ggjActorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjActorFactory.m; path = "Cardiac Castle/Factories/ggjActorFactory.m"; sourceTree = "<group>"; };
 		3E2B2E0316B41AE700F343CD /* ggjActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ggjActor.h; path = "Cardiac Castle/ggjActor.h"; sourceTree = "<group>"; };
 		3E2B2E0416B41AE700F343CD /* ggjActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ggjActor.m; path = "Cardiac Castle/ggjActor.m"; sourceTree = "<group>"; };
+		3E6ADA9B16B42E2000251CB2 /* ggjGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ggjGameViewController.h; sourceTree = "<group>"; };
+		3E6ADA9C16B42E2000251CB2 /* ggjGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ggjGameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +106,10 @@
 				27DDDE3116B4193100B7EEEA /* ggjAppDelegate.h */,
 				27DDDE3216B4193100B7EEEA /* ggjAppDelegate.m */,
 				27DDDE3A16B4193100B7EEEA /* MainStoryboard.storyboard */,
-				27DDDE3D16B4193100B7EEEA /* ggjViewController.h */,
-				27DDDE3E16B4193100B7EEEA /* ggjViewController.m */,
+				27DDDE3D16B4193100B7EEEA /* ggjMenuViewController.h */,
+				3E6ADA9B16B42E2000251CB2 /* ggjGameViewController.h */,
+				3E6ADA9C16B42E2000251CB2 /* ggjGameViewController.m */,
+				27DDDE3E16B4193100B7EEEA /* ggjMenuViewController.m */,
 				27DDDE2916B4193100B7EEEA /* Supporting Files */,
 			);
 			path = "Cardiac Castle";
@@ -217,12 +222,13 @@
 			files = (
 				27DDDE2F16B4193100B7EEEA /* main.m in Sources */,
 				27DDDE3316B4193100B7EEEA /* ggjAppDelegate.m in Sources */,
-				27DDDE3F16B4193100B7EEEA /* ggjViewController.m in Sources */,
+				27DDDE3F16B4193100B7EEEA /* ggjMenuViewController.m in Sources */,
 				3E2B2E0516B41AE700F343CD /* ggjActor.m in Sources */,
 				27DDDE4E16B41EF800B7EEEA /* ggjPlayerActor.m in Sources */,
 				27DDDE5116B41F0D00B7EEEA /* ggjMonsterActor.m in Sources */,
 				27DDDE5416B41F1D00B7EEEA /* ggjObstacleActor.m in Sources */,
 				27DDDE5716B4202B00B7EEEA /* ggjActorFactory.m in Sources */,
+				3E6ADA9D16B42E2000251CB2 /* ggjGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
