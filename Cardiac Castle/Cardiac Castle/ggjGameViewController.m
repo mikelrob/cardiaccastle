@@ -76,11 +76,12 @@
 
 - (void) spawnMonsters
 {
-    
+    [[self monsterFactory] setHeartRate:heartRate];
 }
 
 - (void) spawnObstacles
 {
+    [[self obstacleFactory] setHeartRate:heartRate];
     
 }
 
