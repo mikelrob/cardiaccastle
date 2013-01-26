@@ -40,6 +40,7 @@
     CGFloat heartRate;
     CGFloat movingRedAve;
     NSTimer *measuringTimer;
+    NSTimeInterval timeElapsedThisLoop;
 }
 
 @property (strong) ggjActorFactory *monsterFactory;

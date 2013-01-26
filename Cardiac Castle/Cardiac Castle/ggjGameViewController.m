@@ -194,15 +194,15 @@
         {
             NSDate *currentTime = [NSDate date];
             
-            NSTimeInterval timeElapsed = [currentTime timeIntervalSinceDate: lastLoopDate];
+            timeElapsedThisLoop = [currentTime timeIntervalSinceDate: lastLoopDate];
             lastLoopDate = currentTime;
             
-            if (timeElapsed >= 1/30)
+            if (timeElapsedThisLoop >= 0.03)
             {
-                [self movePlayer:timeElapsed];
-                [self moveMonsters: timeElapsed];
-                [self moveBackground: timeElapsed];
-                [self moveObstacles: timeElapsed];
+                [self movePlayer:timeElapsedThisLoop];
+                [self moveMonsters: timeElapsedThisLoop];
+                [self moveBackground: timeElapsedThisLoop];
+                [self moveObstacles: timeElapsedThisLoop];
                 
                 if(NO == [[self victoryChecker] endGame])
                 {
@@ -387,7 +387,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         CGColorSpaceRelease(colorSpace);
         UIImage *image = [UIImage imageWithCGImage:newImage scale:1.0 orientation:UIImageOrientationLeftMirrored];
         
-        UIColor *color = [self getDominantColor:image];
+    UIColor *color = [self getDominantColor:image];
         //    NSLog(@"%@", color);
         
         CGColorRef cgColor = [color CGColor];
