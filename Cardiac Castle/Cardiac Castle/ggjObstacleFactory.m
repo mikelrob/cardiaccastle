@@ -10,4 +10,41 @@
 
 @implementation ggjObstacleFactory
 
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+        lastSpawnTime = [NSDate date];
+    }
+    
+    return self;
+}
+
+
+- (BOOL)shouldSpawnThisWave
+{
+    NSTimeInterval timeSinceLastSpawn = [[NSDate date] timeIntervalSinceDate: lastSpawnTime];
+    if (timeSinceLastSpawn >= 1.0)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (ggjObstacleActor *)spawnActor
+{
+    lastSpawnTime = [NSDate date];
+    self.numActorsAlive++;
+    ggjObstacleActor* newObstacle = [[ggjObstacleActor alloc] init];
+    [newObstacle setImage: [self obstacleImage]];
+    [newObstacle setSize: [[self obstacleImage] size]];
+    [newObstacle setActorImageView: [[UIImageView alloc] initWithImage: [self obstacleImage]]];
+    return newObstacle;
+}
+
+
 @end

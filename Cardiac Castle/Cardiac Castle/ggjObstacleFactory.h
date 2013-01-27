@@ -7,7 +7,16 @@
 //
 
 #import "ggjActorFactory.h"
+#import "ggjObstacleActor.h"
 
 @interface ggjObstacleFactory : ggjActorFactory
+{
+    NSDate *lastSpawnTime;
+}
+
+
+@property (strong) UIImage *obstacleImage;
+
+- (ggjObstacleActor*) spawnActor;
 
 @end

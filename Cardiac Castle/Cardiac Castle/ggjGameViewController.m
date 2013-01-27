@@ -119,7 +119,24 @@
 - (void) spawnObstacles
 {
     [[self obstacleFactory] setHeartRate:heartRate];
-    
+    if ( [self.obstacleFactory shouldSpawnThisWave] )
+    {
+        ggjObstacleActor *newObstacle = [self.obstacleFactory spawnActor];
+        CGFloat oneFifthWidth = self.view.frame.size.width / 5;
+        CGFloat randomNumber = rand() %5;
+        CGPoint startPosition = CGPointMake(randomNumber * oneFifthWidth, 0);
+        newObstacle.position = startPosition;
+        
+        CGRect startFrame = CGRectMake(newObstacle.position.x, newObstacle.position.y,
+                                       newObstacle.size.width, newObstacle.size.height);
+        newObstacle.actorImageView.frame = startFrame;
+        
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self.view addSubview:newObstacle.actorImageView];
+        });
+        
+        [self.obstacles addObject:newObstacle];
+    }
 }
 
 - (void) moveMonsters: (NSTimeInterval) timeElapsed
@@ -145,7 +162,7 @@
 {
     for (ggjObstacleActor *obstacle in self.obstacles) {
         CGPoint newPostion = obstacle.position;
-        newPostion.y += obstacle.velocity.y;
+        newPostion.y -= timeElapsed * 30 * obstacle.velocity.y;
         obstacle.position = newPostion;
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:timeElapsed animations:^{
@@ -215,7 +232,8 @@
     
     
     [self setObstacleFactory: [[ggjObstacleFactory alloc] init]];
-    [[self obstacleFactory] setActorToSpawn: [[ggjObstacleActor alloc] init]];
+    [[self obstacleFactory] setObstacleImage: [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"cat_walk" ofType:@"png"]]];
+//    [[self obstacleFactory] setActorToSpawn: [[ggjObstacleActor alloc] init]];
     [[self obstacleFactory] setDistTravelled:0.0];
     [[self obstacleFactory] setBaseSpawnProb:0.03];
     [[self obstacleFactory] setHeartRate:heartRate];
