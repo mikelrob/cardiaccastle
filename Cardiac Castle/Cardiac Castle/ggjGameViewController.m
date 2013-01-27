@@ -142,17 +142,19 @@
 
 - (void) moveObstacles: (NSTimeInterval) timeElapsed
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:timeElapsed animations:^{
-            for (ggjObstacleActor *obstacle in self.obstacles) {
-                CGPoint newPosition = obstacle.position;
-                newPosition.y -= obstacle.velocity.y;
-                obstacle.position = newPosition;
-                
-            }
-        }];
+    for (ggjObstacleActor *obstacle in self.obstacles) {
+        CGPoint newPostion = obstacle.position;
+        newPostion.y += obstacle.velocity.y;
+        obstacle.position = newPostion;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:timeElapsed animations:^{
+                CGRect newFrame = obstacle.actorImageView.frame;
+                newFrame.origin.y = obstacle.position.y;
+                obstacle.actorImageView.frame = newFrame;
+            }];
 
-    });
+        });
+    }
 }
 
 - (void) moveBackground: (NSTimeInterval) timeElapsed
