@@ -204,18 +204,35 @@
 
 - (void) moveObstacles: (NSTimeInterval) timeElapsed
 {
-    for (ggjObstacleActor *obstacle in self.obstacles) {
+    int i = [[self obstacles] count] - 1;
+    for (; i >= 0; --i)
+    {
+        ggjObstacleActor *obstacle = [self.obstacles objectAtIndex:i];
         CGPoint newPostion = obstacle.position;
         newPostion.y -= timeElapsed * 30 * obstacle.velocity.y;
         obstacle.position = newPostion;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:timeElapsed animations:^{
-                CGRect newFrame = obstacle.actorImageView.frame;
-                newFrame.origin.y = obstacle.position.y;
-                obstacle.actorImageView.frame = newFrame;
-            }];
+        
+        if (newPostion.y > self.view.frame.size.height + obstacle.size.height)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[obstacle actorImageView] removeFromSuperview];
+            });
+            [self.obstacles removeObject:obstacle];
+//            NSLog(@"removed obstacle, count: %i, subviews: %i", [[self obstacles] count], self.view.subviews.count);
+            [self.obstacleFactory setNumActorsAlive: self.obstacleFactory.numActorsAlive - 1];
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [UIView animateWithDuration:timeElapsed animations:^{
+                    CGRect newFrame = obstacle.actorImageView.frame;
+                    newFrame.origin.y = obstacle.position.y;
+                    obstacle.actorImageView.frame = newFrame;
+                }];
 
-        });
+            });
+        }
     }
 }
 
@@ -540,6 +557,13 @@ struct pixel {
     
     // Find a suitable AVCaptureDevice
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (device == nil)
+    {
+        isStillCounting = NO;
+        isPlaying = YES;
+        heartRate = 60;
+        return;
+    }
     if ([device hasTorch])
     {
         
