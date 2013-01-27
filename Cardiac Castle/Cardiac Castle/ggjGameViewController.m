@@ -96,7 +96,8 @@
 - (void) spawnMonsters
 {
     [[self monsterFactory] setHeartRate:heartRate];
-    if ([self.monsters count] == 0 || [self.monsterFactory shouldSpawnThisWave]) {
+    if ( [self.monsterFactory shouldSpawnThisWave] )
+    {
         ggjMonsterActor *newMonster = [self.monsterFactory spawnActor];
         CGPoint startPosition = self.player.position;
         startPosition.y = self.view.frame.size.height - newMonster.size.height;
