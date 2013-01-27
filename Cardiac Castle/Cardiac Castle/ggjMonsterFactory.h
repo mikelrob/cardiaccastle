@@ -9,7 +9,9 @@
 #import "ggjActorFactory.h"
 #import "ggjMonsterActor.h"
 
-@interface ggjMonsterFactory : ggjActorFactory{
+@interface ggjMonsterFactory : ggjActorFactory
+{
+    NSDate *lastSpawnTime;
 }
 
 @property (strong) UIImage *monsterImage;

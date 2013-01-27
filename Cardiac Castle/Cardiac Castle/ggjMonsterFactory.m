@@ -10,11 +10,20 @@
 
 @implementation ggjMonsterFactory
 
-
+- (id) init
+{
+    self = [super init];
+    if (self)
+    {
+        lastSpawnTime = [NSDate date];
+    }
+    
+    return self;
+}
 
 - (BOOL)shouldSpawnThisWave
 {
-    if (self.numActorsAlive >= 5)
+    if (self.numActorsAlive >= 5 || [[NSDate date] timeIntervalSinceDate:lastSpawnTime] < 0.5 )
     {
         return false;
     }
@@ -36,6 +45,7 @@
 
 - (ggjMonsterActor *)spawnActor
 {
+    lastSpawnTime = [NSDate date];
     self.numActorsAlive++;
     ggjMonsterActor* newMonster = [[ggjMonsterActor alloc] init];
     [newMonster setImage: [self monsterImage]];

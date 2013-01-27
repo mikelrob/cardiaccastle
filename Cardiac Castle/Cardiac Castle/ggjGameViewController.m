@@ -113,6 +113,17 @@
         
         [self.monsters addObject:newMonster];
         
+        NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"spawn" ofType:@"mp3"];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        
+        if (![[self audioPlayer] isPlaying])
+        {
+            _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+            _audioPlayer.numberOfLoops = 0;
+            [[self audioPlayer] setVolume:0.5];
+            [_audioPlayer play];
+        }
+        
     }
 }
 
@@ -141,7 +152,10 @@
 
 - (void) moveMonsters: (NSTimeInterval) timeElapsed
 {
-    for (ggjMonsterActor *monster in self.monsters) {
+    int i = [[self monsters] count] - 1;
+    for (; i >= 0; --i)
+    {
+        ggjMonsterActor *monster = [self.monsters objectAtIndex:i];
         CGPoint newPosition = monster.position;
         newPosition.x += timeElapsed * 0.1 * (self.player.position.x - monster.position.x);
         newPosition.y += timeElapsed * 0.1 * (self.player.position.y - monster.position.y);;
@@ -154,6 +168,36 @@
                  monster.actorImageView.frame = newRect;
             }];
          });
+        
+        for (ggjObstacleActor *obstacle in self.obstacles)
+        {
+            CGFloat xDist = (obstacle.position.x - monster.position.x);
+            CGFloat yDist = (obstacle.position.y - monster.position.y);
+            CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
+            if (distance <= 10)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[monster actorImageView] removeFromSuperview];
+                });
+                [self.monsters removeObject:monster];
+                [self.monsterFactory setNumActorsAlive: self.monsterFactory.numActorsAlive - 1];
+                
+                NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"monster death" ofType:@"wav"];
+                NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+                
+                if ([[self audioPlayer] isPlaying])
+                {
+                    [[self audioPlayer] stop];
+                }
+                
+                _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+                _audioPlayer.numberOfLoops = 0;
+                
+                [[self audioPlayer] setVolume:0.5];
+                
+                [_audioPlayer play];
+            }
+        }
     }
 
 }
@@ -186,7 +230,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:timeElapsed animations:^{
             CGRect newFrame = self.playerSprite.frame;
-            CGFloat newOriginX = newFrame.origin.x - ([[motionManager gyroData] rotationRate].z * 12);
+            CGFloat newOriginX = newFrame.origin.x + ([[motionManager gyroData] rotationRate].y * 6);
+            CGFloat newOriginY = newFrame.origin.y + ( [[motionManager gyroData] rotationRate].x * 6);
             if (newOriginX + newFrame.size.width > [[self view] frame].size.width)
             {
                 newOriginX = self.view.frame.size.width - newFrame.size.width;
@@ -195,12 +240,71 @@
             {
                 newOriginX = 0;
             }
+            
+            if (newOriginY + newFrame.size.height > 0.75 * [[self view] frame].size.height)
+            {
+                newOriginY = 0.75 * [[self view] frame].size.height - newFrame.size.height;
+            }
+            else if (newOriginY + newFrame.size.height < 0.25 * [[self view] frame].size.height)
+            {
+                newOriginY = 0.25 * [[self view] frame].size.height - newFrame.size.height;
+            }
+            
             newFrame.origin.x = newOriginX;
+            newFrame.origin.y = newOriginY;
             self.player.position = newFrame.origin;
             self.playerSprite.frame = newFrame;
         }];
 
     });
+    
+    for (ggjObstacleActor *obstacle in self.obstacles)
+    {
+        CGFloat xDist = (obstacle.position.x - self.player.position.x);
+        CGFloat yDist = (obstacle.position.y - self.player.position.y);
+        CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
+        if (distance <= 10)
+        {
+            [self stopGameLoop];
+            
+            NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"player death by obstacle" ofType:@"mp3"];
+            NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+            
+            if ([[self audioPlayer] isPlaying])
+            {
+                [[self audioPlayer] stop];
+            }
+            
+            _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+            _audioPlayer.numberOfLoops = 0;
+            [[self audioPlayer] setVolume:0.5];
+            [_audioPlayer play];
+        }
+    }
+    
+    for (ggjMonsterActor *monster in self.monsters)
+    {
+        CGFloat xDist = (monster.position.x - self.player.position.x);
+        CGFloat yDist = (monster.position.y - self.player.position.y);
+        CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
+        if (distance <= 10)
+        {
+            [self stopGameLoop];
+            
+            NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"player death by monster" ofType:@"mp3"];
+            NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+            
+            if ([[self audioPlayer] isPlaying])
+            {
+                [[self audioPlayer] stop];
+            }
+            
+            _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+            _audioPlayer.numberOfLoops = 0;
+            [[self audioPlayer] setVolume:0.5];
+            [_audioPlayer play];
+        }
+    }
     
 }
 
@@ -232,7 +336,7 @@
     
     
     [self setObstacleFactory: [[ggjObstacleFactory alloc] init]];
-    [[self obstacleFactory] setObstacleImage: [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"cat_walk" ofType:@"png"]]];
+    [[self obstacleFactory] setObstacleImage: [UIImage imageWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"spikes" ofType:@"png"]]];
 //    [[self obstacleFactory] setActorToSpawn: [[ggjObstacleActor alloc] init]];
     [[self obstacleFactory] setDistTravelled:0.0];
     [[self obstacleFactory] setBaseSpawnProb:0.03];
@@ -250,6 +354,18 @@
     
     [self setupBackgroundImage];
     [self spawnPlayer];
+    distanceTravelled = 0;
+    
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"heart beat" ofType:@"mp3"];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+    [self setBGAudioPlayer: [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil]];
+    [[self BGAudioPlayer] setEnableRate:YES];
+    [[self BGAudioPlayer] setRate:1.0];
+    [[self BGAudioPlayer] setVolume:0.7];
+    [[self BGAudioPlayer] setNumberOfLoops:-1];
+    [[self BGAudioPlayer] prepareToPlay];
+    [[self BGAudioPlayer] play];
     
     gameLoopQueue = dispatch_queue_create("cardiacCastleGameLoopQueue", NULL);
     
@@ -266,10 +382,28 @@
             {
                 lastLoopDate = currentTime;
                 
-                [self movePlayer:timeElapsedThisLoop];
-                [self moveMonsters: timeElapsedThisLoop];
+                distanceTravelled += timeElapsedThisLoop * 5;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[self HRLabel] setText:[ NSString stringWithFormat:@"%im", (int) distanceTravelled ]];
+                    [[self HRLabel] setNeedsDisplay];
+                });
+                
+                if (heartRate > 75)
+                {
+                    [[self BGAudioPlayer] setRate:2.0];
+                    [[self BGAudioPlayer] setVolume:1.0];
+                }
+                else
+                {
+                    [[self BGAudioPlayer] setRate:1.0];
+                    [[self BGAudioPlayer] setVolume:0.7];
+                }
+                
                 [self moveBackground: timeElapsedThisLoop];
                 [self moveObstacles: timeElapsedThisLoop];
+                [self movePlayer:timeElapsedThisLoop];
+                [self moveMonsters: timeElapsedThisLoop];
                 
                 if(NO == [[self victoryChecker] endGame])
                 {
@@ -285,6 +419,19 @@
 {
     isPlaying = NO;
     [motionManager stopGyroUpdates];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[self HRLabel] setText:@"DEAD!"];
+//        [[self HRLabel] setNeedsDisplay];
+        
+        UIImage *gameOverImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"game over" ofType:@"png"]];
+        UIImageView *gameOverView = [[UIImageView alloc] initWithImage: gameOverImage];
+        
+        [gameOverView setFrame: CGRectMake((self.view.frame.size.width - gameOverImage.size.width) / 2, (self.view.frame.size.height - gameOverImage.size.height) / 2, gameOverImage.size.width, gameOverImage.size.height)];
+        
+        [[self view] addSubview:gameOverView];
+        [[self BGAudioPlayer] stop];
+    });
 }
 
 - (void) startMeasurementLoop
@@ -541,10 +688,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                 }
                 
                 NSLog(@"heartRate: %f", heartRate);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [[self HRLabel] setText: [NSString stringWithFormat:@"%f", heartRate ]];
-                    [[self HRLabel] setNeedsDisplay];
-                });
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [[self HRLabel] setText: [NSString stringWithFormat:@"%f", heartRate ]];
+//                    [[self HRLabel] setNeedsDisplay];
+//                });
             }
             
             redWasHigh = redIsHigh;

@@ -43,6 +43,7 @@
     CGFloat movingRedAve;
     NSTimer *measuringTimer;
     NSTimeInterval timeElapsedThisLoop;
+    CGFloat distanceTravelled;
     
     CMMotionManager *motionManager;
 }
@@ -54,6 +55,8 @@
 @property (strong) NSMutableArray *obstacles;
 @property (strong) ggjVictoryChecker *victoryChecker;
 @property (strong, nonatomic) IBOutlet UIImageView *BGImage;
+@property (strong) AVAudioPlayer *BGAudioPlayer;
+@property (strong) AVAudioPlayer *audioPlayer;
 
 @property (strong) UIImageView *playerSprite;
 //@property (strong) NSArray *monsterSprites;
