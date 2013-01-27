@@ -125,8 +125,8 @@
 {
     for (ggjMonsterActor *monster in self.monsters) {
         CGPoint newPosition = monster.position;
-        newPosition.x += monster.velocity.x;
-        newPosition.y -= monster.velocity.y;
+        newPosition.x += timeElapsed * 0.1 * (self.player.position.x - monster.position.x);
+        newPosition.y += timeElapsed * 0.1 * (self.player.position.y - monster.position.y);;
         monster.position = newPosition;
         dispatch_async(dispatch_get_main_queue(), ^{
              [UIView animateWithDuration:timeElapsed animations:^{
@@ -176,6 +176,7 @@
                 newOriginX = 0;
             }
             newFrame.origin.x = newOriginX;
+            self.player.position = newFrame.origin;
             self.playerSprite.frame = newFrame;
         }];
 
