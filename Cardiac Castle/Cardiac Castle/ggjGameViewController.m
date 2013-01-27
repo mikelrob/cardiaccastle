@@ -221,6 +221,8 @@
 
 - (void) moveBackground: (NSTimeInterval) timeElapsed
 {
+    //scroll background and cumulatively total the points moved
+//    self.victoryChecker.playerDistanceTravelled += timeElapsed;
     
 }
 
@@ -323,6 +325,9 @@
 
 - (void) startGameLoop
 {
+    //prevent device from sleeping due to lack of touch input
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
     [motionManager startGyroUpdates];
     
     [self setMonsterFactory: [[ggjMonsterFactory alloc] init]];
@@ -418,6 +423,10 @@
 - (void) stopGameLoop
 {
     isPlaying = NO;
+    
+    //allow device to sleep as game has stopped
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    
     [motionManager stopGyroUpdates];
     
     dispatch_async(dispatch_get_main_queue(), ^{

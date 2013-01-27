@@ -8,12 +8,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cardiac Castle/Cardiac Castle/ggjGameViewController.m"
-         timestampString = "380937348.619745"
+         timestampString = "380938458.394135"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "192"
-         endingLineNumber = "192"
-         landmarkName = "-drawSprite:inImage:atPoint:"
+         startingLineNumber = "194"
+         endingLineNumber = "194"
+         landmarkName = "-moveMonsters:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -26,7 +26,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "126"
          endingLineNumber = "126"
-         landmarkName = "-moveMonsters:"
+         landmarkName = "-spawnMonsters"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
