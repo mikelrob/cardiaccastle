@@ -99,13 +99,16 @@
     if ([self.monsters count] == 0 || [self.monsterFactory shouldSpawnThisWave]) {
         ggjMonsterActor *newMonster = [self.monsterFactory spawnActor];
         CGPoint startPosition = self.player.position;
-        startPosition.y = self.view.frame.size.height;
+        startPosition.y = self.view.frame.size.height - newMonster.size.height;
         newMonster.position = startPosition;
         
         CGRect startFrame = CGRectMake(newMonster.position.x, newMonster.position.y,
                                        newMonster.size.width, newMonster.size.height);
         newMonster.actorImageView.frame = startFrame;
-        [self.view addSubview:newMonster.actorImageView];
+
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self.view addSubview:newMonster.actorImageView];
+        });
         
         [self.monsters addObject:newMonster];
         
@@ -120,29 +123,21 @@
 
 - (void) moveMonsters: (NSTimeInterval) timeElapsed
 {
-//    if ([self.monsters count] == 0) {
-//        [self.monsters addObject:[self.monsterFactory spawnActor]];
-//    }
     for (ggjMonsterActor *monster in self.monsters) {
         CGPoint newPosition = monster.position;
         newPosition.x += monster.velocity.x;
-        newPosition.y += monster.velocity.y;
+        newPosition.y -= monster.velocity.y;
         monster.position = newPosition;
         dispatch_async(dispatch_get_main_queue(), ^{
              [UIView animateWithDuration:timeElapsed animations:^{
                  CGRect newRect = monster.actorImageView.frame;
                  newRect.origin.x = monster.position.x;
                  newRect.origin.y = monster.position.y;
+                 monster.actorImageView.frame = newRect;
             }];
          });
     }
-//    
-//    for (ggjMonsterActor *monster in [self monsters])
-//    {
-//        CGPoint newPos = CGPointMake( [monster position].x + (timeElapsed * [monster velocity].x), [monster position].y + (timeElapsed * [monster velocity].y));
-//        
-//        [monster setPosition: newPos];
-//    }
+
 }
 
 - (void) moveObstacles: (NSTimeInterval) timeElapsed
@@ -158,13 +153,6 @@
         }];
 
     });
-    
-//    for (ggjObstacleActor *obstacle in [self obstacles])
-//    {
-//        CGPoint newPos = CGPointMake( [obstacle position].x + (timeElapsed * [obstacle velocity].x), [obstacle position].y + (timeElapsed * [obstacle velocity].y));
-//        
-//        [obstacle setPosition: newPos];
-//    }
 }
 
 - (void) moveBackground: (NSTimeInterval) timeElapsed
@@ -174,9 +162,7 @@
 
 - (void) movePlayer: (NSTimeInterval) timeElapsed
 {
-//    CGPoint newPos = CGPointMake( [[self player] position].x + (timeElapsed * [[self player] velocity].x), [[self player] position].y + (timeElapsed * [[self player] velocity].y));
-    
-//    [[self player] setPosition: newPos];
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:timeElapsed animations:^{
             CGRect newFrame = self.playerSprite.frame;
@@ -259,7 +245,7 @@
                 lastLoopDate = currentTime;
                 
                 [self movePlayer:timeElapsedThisLoop];
-//                [self moveMonsters: timeElapsedThisLoop];
+                [self moveMonsters: timeElapsedThisLoop];
                 [self moveBackground: timeElapsedThisLoop];
                 [self moveObstacles: timeElapsedThisLoop];
                 

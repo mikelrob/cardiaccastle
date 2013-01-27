@@ -4,16 +4,16 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cardiac Castle/Cardiac Castle/ggjGameViewController.m"
-         timestampString = "380934400.573355"
+         timestampString = "380937348.619745"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "98"
-         endingLineNumber = "98"
-         landmarkName = "-spawnMonsters"
+         startingLineNumber = "192"
+         endingLineNumber = "192"
+         landmarkName = "-drawSprite:inImage:atPoint:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -21,7 +21,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cardiac Castle/Cardiac Castle/ggjGameViewController.m"
-         timestampString = "380934464.115474"
+         timestampString = "380937210.963207"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "126"
